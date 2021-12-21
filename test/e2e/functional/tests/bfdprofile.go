@@ -35,6 +35,7 @@ var _ = Describe("metallb", func() {
 				}
 				return configmap.Data[consts.MetalLBConfigMapName]
 			}, metallbutils.Timeout, metallbutils.Interval).Should(MatchYAML(expectedConfigMap))
+			// No cleanup if assertiong fails!
 
 			By("Checking that deleting the objects clear the ConfigMap is cleared")
 			for _, obj := range objects {
