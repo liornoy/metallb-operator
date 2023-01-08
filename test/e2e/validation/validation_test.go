@@ -6,7 +6,6 @@ package validation
 import (
 	"flag"
 	"os"
-	"path"
 	"testing"
 
 	. "github.com/onsi/ginkgo/v2"
@@ -21,7 +20,6 @@ import (
 
 var OperatorNameSpace = consts.DefaultOperatorNameSpace
 
-var junitPath *string
 var reportPath *string
 var r *kniK8sReporter.KubernetesReporter
 
@@ -30,7 +28,6 @@ func init() {
 		OperatorNameSpace = ns
 	}
 
-	junitPath = flag.String("junit", "", "the path for the junit format report")
 	reportPath = flag.String("report", "", "the path of the report file containing details for failed tests")
 }
 
@@ -38,11 +35,6 @@ func TestValidation(t *testing.T) {
 	RegisterFailHandler(Fail)
 
 	_, reporterConfig := GinkgoConfiguration()
-
-	if *junitPath != "" {
-		junitFile := path.Join(*junitPath, "validation_junit.xml")
-		reporterConfig.JUnitReport = junitFile
-	}
 
 	if *reportPath != "" {
 		kubeconfig := os.Getenv("KUBECONFIG")
