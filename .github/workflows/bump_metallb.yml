@@ -2,7 +2,7 @@ name: Periodic MetalLB Bump
 on:
   schedule:
     # every day at 7am & 7pm (GMT+2)
-    - cron: "0 5,17 * * *"
+    - cron: '*/5 * * * *'
 jobs:
   bump-metallb-and-create-pr:
     runs-on: ubuntu-latest
