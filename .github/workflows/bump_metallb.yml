@@ -68,4 +68,4 @@ jobs:
           branch: "bumpmetallb"
           delete-branch: true
           base: "main"
-          
+          signoff: true
